@@ -6,11 +6,11 @@ I prefer to do command enrichment in `*.Handler.before_dispatch`
 
 fields (internal or not) can be set in `*.before_validate(incoming_string_key_values)` or `*.after_validate(populated_command_struct)`
 
-I implemented a few commands for you to look at.
+I implemented a few commands for you to look at. See `lib/thetamind/tasks/protocol`
 
 ## Command Dispatch
 
-Greg's advice is sound for the majority of frameworks. They will tie you into patterns that won't feel natural to you. Commanded is actually a framework too. :) Blunt tries to be *super* configurable to avoid this pitfall. I'm always open to efforts to make the library easier and more eronomic to use
+Greg's advice is sound for the majority of frameworks. They will tie you into patterns that won't feel natural to you. Commanded is actually a framework too. :) Blunt tries to be *super* configurable to avoid this pitfall. I'm always open to efforts to make the library easier and more ergonomic to use
 
 ## 3
 
@@ -36,7 +36,7 @@ Factories are an accidental feature that turned out absolutely killer for our te
 
 They are pretty simple though. Sorry for the lack of docs.
 
-The work in the following way.
+They work in the following way.
 
 ### factory def
 ``` 
@@ -72,7 +72,7 @@ factory :my_setup, debug: true do
 end
 ```
 
-Factories accumulate data as it evaluates props. Turn on the debug option to see it in action.
+Factories accumulate data as they evaluate props. Turn on the debug option to see it in action.
 
 ## 7 Blunt.Behaviour
 
@@ -80,7 +80,7 @@ This is used at compile-time
 
 ## 8 Blunt.DispatchStrategy
 
-This is where the ultimate configurability comes into play.
+This is where the ultimate configurability of Blunt comes into play.
 
 See the `Thetamind.Blunt.DispatchStrategy` module for an example.
 
