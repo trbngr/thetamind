@@ -10,11 +10,13 @@ defmodule Thetamind.Blunt.QueryHandler do
 
   @callback before_dispatch(filters(), context) :: {:ok, context()} | {:error, any()}
   @callback create_query(filter_list(), context()) :: query()
+  @callback handle_scope(user(), query(), context()) :: query()
   @callback handle_dispatch(query(), context(), opts()) :: any()
 
   defmacro __using__(_opts) do
     quote do
       import Ecto.Query
+
       alias Thetamind.Repo
 
       @behaviour Thetamind.Blunt.QueryHandler
@@ -23,7 +25,11 @@ defmodule Thetamind.Blunt.QueryHandler do
       def before_dispatch(_filters, context),
         do: {:ok, context}
 
-      defoverridable before_dispatch: 2
+      @impl true
+      def handle_scope(_user, query, _context),
+        do: query
+
+      defoverridable before_dispatch: 2, handle_scope: 3
     end
   end
 end

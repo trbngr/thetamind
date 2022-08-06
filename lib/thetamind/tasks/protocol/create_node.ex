@@ -9,6 +9,11 @@ defmodule Thetamind.Tasks.Protocol.CreateNode do
   field :name, :string
   field :pet_type, PetFields.pet_type(), required: false
 
+  # Change this as needed for your needs. See dispatch_strategy in support/blunt
+  metadata :auth,
+    user_roles: :all,
+    account_types: :all
+
   @impl true
   def after_validate(command) do
     %{command | id: UUID.uuid4()}
