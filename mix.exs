@@ -38,7 +38,7 @@ defmodule Thetamind.MixProject do
       {:plug_cowboy, "~> 2.5"},
 
       # Ecto
-      {:ecto_sql, "~> 3.6"},
+      {:ecto_sql, "~> 3.7.2"},
       {:postgrex, ">= 0.0.0"},
 
       # Absinthe
@@ -51,13 +51,9 @@ defmodule Thetamind.MixProject do
       {:eventstore, "~> 1.4"},
       {:commanded_eventstore_adapter, "~> 1.2"},
 
-      # Blunt
-      {:blunt, github: "blunt-elixir/blunt", ref: "reorg", sparse: "apps/blunt", override: true},
+      # Tools
+      {:cqrs_tools, "~> 0.1"},
       {:blunt_data, github: "blunt-elixir/blunt", ref: "reorg", sparse: "apps/blunt_data", override: true},
-      {:blunt_ddd, github: "blunt-elixir/blunt", ref: "reorg", sparse: "apps/blunt_ddd", override: true},
-      {:blunt_absinthe, github: "blunt-elixir/blunt", ref: "reorg", sparse: "apps/blunt_absinthe", override: true},
-      {:blunt_absinthe_relay,
-       github: "blunt-elixir/blunt", ref: "reorg", sparse: "apps/blunt_absinthe_relay", override: true},
 
       # Utils
       {:jason, "~> 1.2"},

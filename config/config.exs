@@ -7,30 +7,7 @@
 # General application configuration
 import Config
 
-config :blunt,
-  dispatch_return: :response,
-  error_return: :errors,
-  log_when_compiling: false,
-  create_jason_encoders: true,
-  context_shipper: Thetamind.Blunt.ContextShipper,
-  dispatch_strategy: Thetamind.Blunt.DispatchStrategy,
-  pipeline_resolver: Thetamind.Blunt.PipelineResolver,
-  schema_field_definitions: [
-    Thetamind.Blunt.Fields.PetFields
-  ],
-  compiler_hooks: [
-    command: [],
-    query: [],
-    domain_event: [
-      {Thetamind.Blunt.CompilerHooks.DomainEvent, :create_commanded_json_decoder}
-    ],
-    value_object: [],
-    entity: []
-  ]
-
 config :absinthe, schema: Thetamind.Schema
-config :blunt_absinthe_relay, repo: Thetamind.Repo
-config :blunt_absinthe, dispatch_context_configuration: Thetamind.Blunt.AbsintheContextConfiguration
 
 config :thetamind, Thetamind.CommandedApp,
   registry: :local,

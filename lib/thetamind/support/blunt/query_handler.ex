@@ -1,4 +1,4 @@
-defmodule Thetamind.Blunt.QueryHandler do
+defmodule Thetamind.Cqrs.QueryHandler do
   @moduledoc false
 
   @type opts :: keyword()
@@ -6,7 +6,7 @@ defmodule Thetamind.Blunt.QueryHandler do
   @type filter_list :: keyword()
   @type user :: struct() | nil
   @type query :: Ecto.Query.t() | any()
-  @type context :: Blunt.DispatchContext.t()
+  @type context :: Cqrs.DispatchContext.t()
 
   @callback before_dispatch(filters(), context) :: {:ok, context()} | {:error, any()}
   @callback create_query(filter_list(), context()) :: query()
@@ -19,7 +19,7 @@ defmodule Thetamind.Blunt.QueryHandler do
 
       alias Thetamind.Repo
 
-      @behaviour Thetamind.Blunt.QueryHandler
+      @behaviour Thetamind.Cqrs.QueryHandler
 
       @impl true
       def before_dispatch(_filters, context),

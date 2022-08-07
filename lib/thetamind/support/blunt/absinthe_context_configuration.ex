@@ -1,6 +1,6 @@
-defmodule Thetamind.Blunt.AbsintheContextConfiguration do
+defmodule Thetamind.Cqrs.AbsintheContextConfiguration do
   @moduledoc false
-  @behaviour Blunt.Absinthe.DispatchContext.Configuration
+  @behaviour Cqrs.Absinthe.DispatchContext.Configuration
 
   def configure(_message_module, %{context: context}) do
     [user: Map.get(context, :user), scope?: true, authorize?: true]

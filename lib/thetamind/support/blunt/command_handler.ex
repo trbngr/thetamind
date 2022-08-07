@@ -1,9 +1,9 @@
-defmodule Thetamind.Blunt.CommandHandler do
+defmodule Thetamind.Cqrs.CommandHandler do
   @moduledoc false
 
   @type user :: map()
   @type command :: struct()
-  @type context :: Blunt.DispatchContext.command_context()
+  @type context :: Cqrs.DispatchContext.command_context()
   @type opts :: keyword()
 
   @callback before_dispatch(command, context) :: {:ok, context()} | {:error, any()}
@@ -12,7 +12,7 @@ defmodule Thetamind.Blunt.CommandHandler do
 
   defmacro __using__(_opts) do
     quote do
-      @behaviour Thetamind.Blunt.CommandHandler
+      @behaviour Thetamind.Cqrs.CommandHandler
 
       @impl true
       def handle_authorize(_user, _command, context),

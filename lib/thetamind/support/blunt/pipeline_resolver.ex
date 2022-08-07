@@ -1,5 +1,5 @@
-defmodule Thetamind.Blunt.PipelineResolver do
-  @behaviour Blunt.DispatchStrategy.PipelineResolver
+defmodule Thetamind.Cqrs.PipelineResolver do
+  @behaviour Cqrs.DispatchStrategy.PipelineResolver
 
   @moduledoc """
   Resolves `CommandHandler`s and `QueryHandler`s by convention.

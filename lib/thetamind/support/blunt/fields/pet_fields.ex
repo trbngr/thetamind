@@ -1,5 +1,5 @@
-defmodule Thetamind.Blunt.Fields.PetFields do
-  use Blunt.Message.Schema.FieldDefinition
+defmodule Thetamind.Cqrs.Fields.PetFields do
+  # use Cqrs.Message.Schema.FieldDefinition
 
   defmacro __using__(_opts) do
     quote do

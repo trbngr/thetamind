@@ -9,14 +9,14 @@ defmodule Thetamind.ReadModel.Queries.GetNode.HandlerTest do
       assert {:ok, %{id: ^id}} =
                %{id: id}
                |> GetNode.new()
-               |> GetNode.dispatch()
+               |> GetNode.execute()
     end
 
     test "returns nil if not found" do
-      assert {:ok, nil} =
+      assert nil =
                %{id: UUID.uuid4()}
                |> GetNode.new()
-               |> GetNode.dispatch()
+               |> GetNode.execute()
     end
   end
 end

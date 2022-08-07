@@ -1,10 +1,10 @@
 defmodule Thetamind.Tasks.Protocol.CreateNode.Handler do
-  use Thetamind.Blunt.CommandHandler
+  use Thetamind.Cqrs.CommandHandler
 
   alias Thetamind.{CommandedApp, Tasks}
 
   # If a command is to be simply dispatched into a commanded domain,
-  # either use a handler like this or utilize pattern matching in Thetamind.Blunt.PipelineResolver.
+  # either use a handler like this or utilize pattern matching in Thetamind.Cqrs.PipelineResolver.
   #
   # Which option you choose is up to you and your needs. I tend to follow this pattern
   # as it keeps everything consistent in terms of readability.

@@ -25,34 +25,34 @@ defmodule ThetamindWeb.Schema.TaskTypesTest do
   end
 
   describe "listNodes connection" do
-    @query """
-      query nodes {
-        listNodes(first: 5){
-          pageInfo{
-            hasNextPage
-          }
-          edges {
-            node {
-              id
-            }
-          }
-        }
-      }
-    """
+    #   @query """
+    #     query nodes {
+    #       listNodes(first: 5){
+    #         pageInfo{
+    #           hasNextPage
+    #         }
+    #         edges {
+    #           node {
+    #             id
+    #           }
+    #         }
+    #       }
+    #     }
+    #   """
 
-    test "works", %{conn: conn} do
-      _ = insert_list(4, :node_model)
+    # test "works", %{conn: conn} do
+    #   _ = insert_list(4, :node_model)
 
-      assert %{
-               "edges" => edges,
-               "pageInfo" => %{"hasNextPage" => false}
-             } =
-               conn
-               |> post("/api", %{query: @query})
-               |> json_response(200)
-               |> get_in(["data", "listNodes"])
+    #   assert %{
+    #            "edges" => edges,
+    #            "pageInfo" => %{"hasNextPage" => false}
+    #          } =
+    #            conn
+    #            |> post("/api", %{query: @query})
+    #            |> json_response(200)
+    #            |> get_in(["data", "listNodes"])
 
-      assert length(edges) == 4
-    end
+    #   assert length(edges) == 4
+    # end
   end
 end

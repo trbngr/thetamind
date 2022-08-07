@@ -1,7 +1,7 @@
 defmodule Thetamind.Tasks.Protocol.DeleteNode.Handler do
-  use Thetamind.Blunt.CommandHandler
+  use Thetamind.Cqrs.CommandHandler
 
-  alias Blunt.DispatchContext
+  alias Cqrs.DispatchContext
   alias Thetamind.{CommandedApp, Tasks}
 
   def before_dispatch(command, context) do
@@ -23,7 +23,7 @@ defmodule Thetamind.Tasks.Protocol.DeleteNode.Handler do
   end
 
   # If a command is to be simply dispatched into a commanded domain,
-  # either use a handler like this or utilize pattern matching in Thetamind.Blunt.PipelineResolver.
+  # either use a handler like this or utilize pattern matching in Thetamind.Cqrs.PipelineResolver.
   #
   # Which option you choose is up to you and your needs. I tend to follow this pattern
   # as it keeps everything consistent in terms of readability.

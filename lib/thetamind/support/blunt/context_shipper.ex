@@ -1,7 +1,7 @@
-defmodule Thetamind.Blunt.ContextShipper do
+defmodule Thetamind.Cqrs.ContextShipper do
   @moduledoc false
 
-  @behaviour Blunt.DispatchContext.Shipper
+  @behaviour Cqrs.DispatchContext.Shipper
 
   require Logger
 

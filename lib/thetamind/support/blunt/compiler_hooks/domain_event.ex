@@ -1,4 +1,4 @@
-defmodule Thetamind.Blunt.CompilerHooks.DomainEvent do
+defmodule Thetamind.Cqrs.CompilerHooks.DomainEvent do
   @moduledoc false
   def create_commanded_json_decoder(%{module: module}) do
     quote do

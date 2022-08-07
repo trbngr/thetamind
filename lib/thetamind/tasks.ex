@@ -1,5 +1,5 @@
 defmodule Thetamind.Tasks do
-  use Blunt.BoundedContext
+  use Cqrs.BoundedContext
 
   alias Thetamind.ReadModel.Queries
 

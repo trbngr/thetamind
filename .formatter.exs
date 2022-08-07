@@ -5,11 +5,8 @@
     :commanded,
     :phoenix,
     :absinthe,
-    :blunt,
     :blunt_data,
-    :blunt_ddd,
-    :blunt_absinthe,
-    :blunt_absinthe_relay
+    :cqrs_tools
   ],
   line_length: 120,
   inputs: ["*.{ex,exs}", "priv/*/seeds.exs", "{config,lib,test}/**/*.{ex,exs}"],
