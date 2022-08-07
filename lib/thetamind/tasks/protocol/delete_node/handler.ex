@@ -15,7 +15,7 @@ defmodule Thetamind.Tasks.Protocol.DeleteNode.Handler do
       #
       # Otherwise, you can use the private data map in the dispatch context
       #
-      # context = DispatchContext.internal_field(context, :leaf, leaf)
+      # context = DispatchContext.put_private(context, :leaf, leaf)
 
       context = DispatchContext.internal_field(context, :leaf, leaf)
       {:ok, context}
