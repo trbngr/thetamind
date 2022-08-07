@@ -76,7 +76,9 @@ Factories accumulate data as they evaluate props. Turn on the debug option to se
 
 ## 7 Blunt.Behaviour
 
-This is used at compile-time
+This is used at compile-time -- mostly.
+
+It is used to validate some behaviours at run-time too. See `PipelineResolver`.
 
 ## 8 Blunt.DispatchStrategy
 
