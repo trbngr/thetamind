@@ -23,7 +23,8 @@ defmodule Thetamind.Tasks.Protocol.DeleteNode.Handler do
   end
 
   # If a command is to be simply dispatched into a commanded domain,
-  # either use a handler like this or utilize pattern matching in Thetamind.Blunt.PipelineResolver.
+  # either use a handler like this or utilize pattern matching in Thetamind.Blunt.PipelineResolver to select a
+  # module dedicated to dispatching a command to directly to commanded.
   #
   # Which option you choose is up to you and your needs. I tend to follow this pattern
   # as it keeps everything consistent in terms of readability.
