@@ -19,6 +19,6 @@ defmodule Thetamind.Blunt.PipelineResolver do
     handler = message_module |> Module.concat(:Handler) |> to_string()
     {:ok, String.to_existing_atom(handler)}
   rescue
-    _ -> :error |> IO.inspect(label: "shoud")
+    _ -> :error
   end
 end
