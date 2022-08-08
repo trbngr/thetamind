@@ -1,5 +1,6 @@
+# Modifed from: blunt/lib/blunt/testing/factories/dispatch_strategy.ex
 if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
-  defmodule Blunt.Testing.Factories.DispatchStrategy do
+  defmodule Thetamind.Factories.CqrsDispatchStrategy do
     @moduledoc false
     use ExMachina.Strategy, function_name: :dispatch
 

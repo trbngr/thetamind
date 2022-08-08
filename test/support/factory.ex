@@ -1,7 +1,7 @@
 defmodule Thetamind.Factory do
   defmacro __using__(_opts) do
     quote do
-      use Blunt.Testing.Factories, repo: Thetamind.Repo
+      use Thetamind.Testing.Factories, repo: Thetamind.Repo
 
       use Thetamind.Factory.Macros
       use Thetamind.Factory.TaskFactories
