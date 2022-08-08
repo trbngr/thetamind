@@ -58,6 +58,7 @@ defmodule Thetamind.MixProject do
       # Utils
       {:jason, "~> 1.2"},
       {:elixir_uuid, "~> 1.6", override: true, hex: :uuid_utils},
+      {:exconstructor, "~> 1.2.6"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:typed_struct, "~> 0.3.0"},
