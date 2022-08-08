@@ -6,7 +6,7 @@ defmodule Thetamind.Tasks.Protocol.DeleteNode do
 
   internal_field :leaf, :map
 
-  # Change this as needed for your needs. See dispatch_strategy in support/blunt
+  # Change this as needed for your needs. See authorize_command/2 in support/blunt/dispatch_strategy/command_strategy
   metadata :auth,
     user_roles: :all,
     account_types: :all

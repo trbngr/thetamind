@@ -9,7 +9,7 @@ defmodule Thetamind.Tasks.Protocol.CreateNode do
   field :name, :string
   field :pet_type, PetFields.pet_type(), required: false
 
-  # Change this as needed for your needs. See dispatch_strategy in support/blunt
+  # Change this as needed for your needs. See authorize_command/2 in support/blunt/dispatch_strategy/command_strategy
   metadata :auth,
     user_roles: :all,
     account_types: :all
