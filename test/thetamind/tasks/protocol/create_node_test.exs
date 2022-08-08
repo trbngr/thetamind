@@ -4,8 +4,9 @@ defmodule Thetamind.Tasks.Protocol.CreateNodeTest do
 
   describe "name" do
     test "is required" do
-      assert {error, _} = build(:create_node, name: nil)
+      assert {:error, _} = build(:create_node, name: nil)
       assert %CreateNode{name: "Matt"} = build(:create_node, name: "Matt")
+      assert {:ok, %{id: _id}} = dispatch(:create_node, name: "Matt B")
     end
   end
 

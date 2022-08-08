@@ -8,7 +8,7 @@ defmodule ThetamindWeb.Schema.TaskTypes do
   alias Thetamind.Tasks.Protocol
   alias Thetamind.ReadModel.Queries
 
-  # derive_enum :pet_type, {Protocol.CreateNode, :pet_type}
+  derive_enum :pet_type, {Protocol.CreateNode, :pet_type}
 
   object :task do
     field :id, :id
@@ -23,6 +23,9 @@ defmodule ThetamindWeb.Schema.TaskTypes do
   end
 
   object :task_mutations do
-    derive_mutation Protocol.CreateNode, :task, arg_types: [pet_type: :pet_type]
+    derive_mutation Protocol.CreateNode, :task,
+      arg_types: [pet_type: :pet_type],
+      returning: :execution_result,
+      then: &ThetamindWeb.Resolvers.Graph.fetch_node/1
   end
 end
