@@ -60,6 +60,7 @@ defmodule Thetamind.MixProject do
       {:elixir_uuid, "~> 1.6", override: true, hex: :uuid_utils},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+      {:typed_struct, "~> 0.3.0"},
 
       # Testing
       {:ex_machina, "~> 2.7", only: :test},
