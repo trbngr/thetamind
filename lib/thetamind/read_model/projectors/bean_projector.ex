@@ -4,7 +4,7 @@ defmodule Thetamind.ReadModel.Projectors.BeanProjector do
     name: to_string(__MODULE__) <> "-v1",
     consistency: :strong
 
-  alias Thetamind.{Repo, Tasks}
+  alias Thetamind.{Repo, Garden}
   alias Thetamind.Garden.Events
   alias Thetamind.ReadModel.BeanModel
 
@@ -18,9 +18,10 @@ defmodule Thetamind.ReadModel.Projectors.BeanProjector do
   end
 
   def handle(%Events.BeanFlagged{id: id}, _metadata) do
-    %{id: id}
-    |> Garden.get_bean!()
-    |> BeanModel.changeset(flagged: true)
+    {:ok, bean} = Garden.get_bean!(id: id)
+
+    bean
+    |> Ecto.Changeset.change(flagged: true)
     |> Repo.update!()
 
     :ok
