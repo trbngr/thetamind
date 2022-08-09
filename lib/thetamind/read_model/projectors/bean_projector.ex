@@ -18,7 +18,7 @@ defmodule Thetamind.ReadModel.Projectors.BeanProjector do
   end
 
   def handle(%Events.BeanFlagged{id: id}, _metadata) do
-    {:ok, bean} = Garden.get_bean!(id: id)
+    {:ok, bean} = Garden.get_bean!(id)
 
     bean
     |> Ecto.Changeset.change(flagged: true)

@@ -10,7 +10,8 @@ defmodule Thetamind.ReadModel do
   @impl true
   def init(_) do
     children = [
-      Projectors.TaskProjector
+      Projectors.TaskProjector,
+      Projectors.BeanProjector
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

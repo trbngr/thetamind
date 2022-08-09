@@ -12,7 +12,7 @@ defmodule Thetamind.Garden.Aggregates.Bean do
   alias Thetamind.Garden.Commands.{CreateBean, FlagBean}
   alias Thetamind.Garden.Events.{BeanCreated, BeanFlagged}
 
-  def execute(%Bean{id: id}, %CreateBean{id: id, name: name, parent_id: parent_id}) do
+  def execute(%Bean{id: nil}, %CreateBean{id: id, name: name, parent_id: parent_id}) do
     %BeanCreated{id: id, name: name, flagged: false, parent_id: parent_id}
   end
 
@@ -20,19 +20,28 @@ defmodule Thetamind.Garden.Aggregates.Bean do
     {:error, :bean_already_flagged}
   end
 
-  def execute(%Bean{id: id}, %FlagBean{id: id, leaf?: false}) do
+  def execute(%Bean{}, %FlagBean{leaf?: nil} = command) do
+    raise ArgumentError, "FlagBean.leaf must be true or false; got: #{inspect(command)}"
+  end
+
+  def execute(%Bean{}, %FlagBean{leaf?: false}) do
     {:error, :bean_has_children}
   end
 
-  def execute(%Bean{id: id}, %FlagBean{id: id, leaf?: true}) do
+  def execute(%Bean{}, %FlagBean{id: id, leaf?: true}) do
     %BeanFlagged{id: id}
   end
 
-  def apply(%Bean{} = bean, %BeanCreated{id: id, name: name, parent_id: parent_id}) do
-    %Bean{bean | id: id, name: name, parent_id: parent_id}
+  def apply(%Bean{} = bean, %BeanCreated{id: id, name: name, parent_id: parent_id, flagged: flagged}) do
+    %Bean{bean | id: id, name: name, parent_id: parent_id, flagged: flagged}
   end
 
   def apply(%Bean{} = bean, %BeanFlagged{id: _id}) do
     %Bean{bean | flagged: true}
   end
+
+  @behaviour Commanded.Aggregates.AggregateLifespan
+  def after_error(_), do: :timer.seconds(1)
+  def after_event(_), do: :timer.minutes(15)
+  def after_command(_), do: :timer.minutes(15)
 end

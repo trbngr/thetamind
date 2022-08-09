@@ -7,6 +7,7 @@ defmodule Thetamind.CommandedApp do
     ]
 
   router Thetamind.Tasks.Router
+  router Thetamind.Garden.Router
 
   # defdelegate dispatch_context(context, metadata \\ %{}), to: Thetamind.Cqrs.Commanded, as: :dispatch
 end

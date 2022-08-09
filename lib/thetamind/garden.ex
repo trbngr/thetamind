@@ -6,8 +6,7 @@ defmodule Thetamind.Garden do
   alias Thetamind.Garden.Commands.CreateGarden
   alias Thetamind.Garden.Commands.CreateBean
   alias Thetamind.Garden.Commands.FlagBean
-  alias Thetamind.Garden.Projections.Garden
-  alias Thetamind.Garden.Projections.Bean
+  alias Thetamind.ReadModel.BeanModel
 
   def create_garden(attrs, user_id) do
     id = UUID.uuid4()
@@ -23,10 +22,10 @@ defmodule Thetamind.Garden do
   end
 
   def list_beans() do
-    Repo.all(Bean)
+    Repo.all(BeanModel)
   end
 
-  def get_bean!(id), do: get_by_id(Bean, id)
+  def get_bean!(id), do: get_by_id(BeanModel, id)
 
   def create_bean(attrs, user_id) do
     id = UUID.uuid4()
@@ -37,7 +36,7 @@ defmodule Thetamind.Garden do
       |> CreateBean.assign_id(id)
 
     with :ok <- CommandedApp.dispatch(command, opts(user_id)) do
-      get_by_id(Bean, id)
+      get_by_id(BeanModel, id)
     end
   end
 
@@ -47,7 +46,7 @@ defmodule Thetamind.Garden do
       |> FlagBean.new()
 
     with :ok <- CommandedApp.dispatch(command, opts(user_id)) do
-      get_by_id(Bean, command.id)
+      get_by_id(BeanModel, command.id)
     end
   end
 
@@ -59,6 +58,6 @@ defmodule Thetamind.Garden do
   end
 
   defp opts(user_id) do
-    [consistency: :strong, metadata: %{user_id: user_id}]
+    [consistency: :strong, returning: false, metadata: %{user_id: user_id}]
   end
 end

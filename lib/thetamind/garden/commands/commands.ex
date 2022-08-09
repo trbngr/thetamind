@@ -19,7 +19,6 @@ defmodule Thetamind.Garden.Commands.CreateBean do
   typedstruct enforce: true do
     field :id, String.t()
     field :name, String.t()
-    field :flagged, boolean(), default: false
     field :parent_id, String.t(), enforce: false
   end
 
@@ -35,5 +34,21 @@ defmodule Thetamind.Garden.Commands.FlagBean do
   typedstruct enforce: true do
     field :id, String.t()
     field :leaf?, boolean()
+  end
+end
+
+alias Thetamind.Garden.Commands.FlagBean
+
+defimpl Thetamind.Middleware.CommandEnrichment, for: FlagBean do
+  alias Thetamind.ReadModel.BeanModel
+  import Ecto.Query, only: [where: 2]
+
+  def enrich(%FlagBean{id: id} = command) do
+    # A bean is a leaf when it has no children.
+    # To make flagging a subtree possible flagged nodes are not considered active children.
+    query = where(BeanModel, parent_id: ^id, flagged: false)
+    has_children = Thetamind.Repo.exists?(query)
+
+    {:ok, %FlagBean{command | leaf?: not has_children}}
   end
 end

@@ -19,7 +19,7 @@ defmodule Thetamind.Tasks.Protocol.DeleteNode.HandlerTest do
                |> DeleteNode.dispatch()
     end
 
-    factory :leaf_env, debug: true do
+    factory :leaf_env, debug: false do
       prop :node, &dispatch(:create_node, &1)
       prop :id, [:node, :id]
     end
